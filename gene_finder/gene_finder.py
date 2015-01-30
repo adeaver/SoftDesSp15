@@ -19,7 +19,7 @@ def shuffle_string(s):
 ### YOU WILL START YOUR IMPLEMENTATION FROM HERE DOWN ###
 
 
-def get_complement(nucleotide):
+def get_complement(base):
     """ Returns the complementary nucleotide
 
         nucleotide: a nucleotide (A, C, G, or T) represented as a string
@@ -30,7 +30,15 @@ def get_complement(nucleotide):
     'G'
     """
     # TODO: implement this
-    pass
+    complements =[["A", "T"],
+                    ["G", "C"]]
+
+    for pair in complements:
+        if(base==pair[0]):
+            return pair[1]
+        elif(base==pair[1]):
+            return pair[0]
+    
 
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
@@ -44,7 +52,13 @@ def get_reverse_complement(dna):
     'TGAACGCGG'
     """
     # TODO: implement this
-    pass
+    complement = ""
+    reverse = dna[::-1]
+
+    for x in range(0, len(reverse)):
+        complement += get_complement(reverse[x])
+
+    return complement
 
 def rest_of_ORF(dna):
     """ Takes a DNA sequence that is assumed to begin with a start codon and returns

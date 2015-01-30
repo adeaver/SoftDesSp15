@@ -2,7 +2,7 @@
 """
 Created on Sun Feb  2 11:24:42 2014
 
-@author: YOUR NAME HERE
+@author: Andrew Deaver
 
 """
 
@@ -12,6 +12,60 @@ import random
 from load import load_seq
 
 ### YOU WILL START YOUR IMPLEMENTATION FROM HERE DOWN ###
+
+def get_complement(base):
+    """ returns the complement for a base
+
+    >>> get_complement("A")
+    'T'
+
+    >>> get_complement("T")
+    'A'
+
+    >>> get_complement("C")
+    'G'
+
+    >>> get_complement("G")
+    'C'"""
+    complements =[["A", "T"], ["G", "C"]]
+
+    for pair in complements:
+        if(base==pair[0]):
+            return pair[1]
+        elif(base==pair[1]):
+            return pair[0]
+
+
+def reverse_complement(dna):
+    """
+    >>> reverse_complement("ATGCTACATTCGCAT")
+    'ATGCGAATGTAGCAT'
+    """
+    return ''.join([get_complement(dna[x]) for x in range(len(dna)-1, -1, -1)])
+
+def get_ORFS(dna):
+    """ Gets the ORFS from one strand"""
+    ORFS = []
+
+    currentORF = []
+
+    slice_position = 0
+    for slice in range(0, len(dna)-3, 1):
+        if(dna[slice:slice+3] == "ATG" and slice >= slice_position):
+            for slice_position in range(slice, len(dna)-2, 3):
+                if(dna[slice_position:slice_position+3] != "TAG" and dna[slice_position:slice_position+3] != "TAA" and dna[slice_position:slice_position+3] != "TGA"):
+                    currentORF.append(dna[slice_position:slice_position+3])
+                else:
+                    ORFS.append(''.join(currentORF))
+                    currentORF = []
+                    break
+            if(len(currentORF) > 0):
+                ORFS.append(''.join(currentORF))
+        else:
+            continue
+
+    return ORFS
+
 
 def find_all_ORFs_both_strands(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence on both
@@ -23,7 +77,7 @@ def find_all_ORFs_both_strands(dna):
     ['ATGCGAATG', 'ATGCTACATTCGCAT']
     """
     # TODO: implement this
-    pass
+    return get_ORFS(dna) + get_ORFS(reverse_complement(dna))
 
 def longest_ORF(dna):
     """ Finds the longest ORF on both strands of the specified DNA and returns it
@@ -32,7 +86,20 @@ def longest_ORF(dna):
     'ATGCTACATTCGCAT'
     """
     # TODO: implement this
-    pass
+
+    ORF1 = get_ORFS(dna)
+    ORF2 = get_ORFS(reverse_complement(dna))
+
+    allORFs = ORF1 + ORF2
+
+    longest = ""
+    length = -999
+
+    for ORF in allORFs:
+        if(len(ORF) > length):
+            longest = ORF
+
+    return longest
 
 
 def longest_ORF_noncoding(dna, num_trials):
@@ -60,7 +127,23 @@ def coding_strand_to_AA(dna):
         'MPA'
     """
     # TODO: implement this
-    pass
+
+    codingStrand = ""
+
+    slice = 0
+    while(slice <= len(dna)-3):
+        codon = dna[slice:slice+3]
+
+        for x in range(0, len(codons)):
+            for y in range(0, len(codons[x])):
+                if(codon == codons[x][y]):
+                    codingStrand += aa[x]
+                    break
+
+        slice += 3
+
+    return codingStrand
+
 
 def gene_finder(dna, threshold):
     """ Returns the amino acid sequences coded by all genes that have an ORF
@@ -73,7 +156,15 @@ def gene_finder(dna, threshold):
                  length specified.
     """
     # TODO: implement this
-    pass
+    
+    ORFS = find_all_ORFs_both_strands(dna)
+    good_aa = []
+
+    for ORF in ORFS:
+        if(len(ORF) >= threshold):
+            good_aa.append(coding_strand_to_AA(ORF))
+
+    return good_aa
 
 if __name__ == "__main__":
     import doctest
