@@ -27,43 +27,61 @@ def get_complement(base):
 
     >>> get_complement("G")
     'C'"""
-    complements =[["A", "T"], ["G", "C"]]
 
-    for pair in complements:
-        if(base==pair[0]):
-            return pair[1]
-        elif(base==pair[1]):
-            return pair[0]
+    # iterates through a two dimensional list, returns the complement if the given base is equal to the first entry in the list
+    return ''.join([pair[1] for pair in [["A", "T"], ["T", "A"], ["G", "C"], ["C", "G"]] if (base == pair[0])])
 
 
 def reverse_complement(dna):
     """
     >>> reverse_complement("ATGCTACATTCGCAT")
     'ATGCGAATGTAGCAT'
+
+    >>> reverse_complement("GTACCCATAGGGATT")
+    'AATCCCTATGGGTAC'
     """
+
+    # iterates backwards through the list and gets the complement of each letter in list
     return ''.join([get_complement(dna[x]) for x in range(len(dna)-1, -1, -1)])
 
 def get_ORFS(dna):
     """ Gets the ORFS from one strand"""
+
+    # define starting variables
     ORFS = []
-
     currentORF = []
-
     slice_position = 0
-    for slice in range(0, len(dna)-3, 1):
-        if(dna[slice:slice+3] == "ATG" and slice >= slice_position):
-            for slice_position in range(slice, len(dna)-2, 3):
-                if(dna[slice_position:slice_position+3] != "TAG" and dna[slice_position:slice_position+3] != "TAA" and dna[slice_position:slice_position+3] != "TGA"):
-                    currentORF.append(dna[slice_position:slice_position+3])
-                else:
+
+    # iterate through the different frames
+    for start in range(0, 3):
+        # initialize slice position for every iteration
+        slice_position = 0
+
+        # iterate through starting positions for slices
+        for slice in range(start, len(dna), 3):
+
+            # determine if the slice is a start codon and if the codon has already been recorded (slice >= slice_position)
+            if(dna[slice:slice+3] == "ATG" and slice >= slice_position):
+
+                # cycle through the dna sequence until it gets to end codon
+                for slice_position in range(slice, len(dna), 3):
+                    if(dna[slice_position:slice_position+3] != "TAG" and dna[slice_position:slice_position+3] != "TAA" and dna[slice_position:slice_position+3] != "TGA"):
+                        # append to the list of codons that are in the reading frame
+                        currentORF.append(dna[slice_position:slice_position+3])
+                    else:
+                        # append to the list of all ORFs
+                        ORFS.append(''.join(currentORF))
+
+                        # reset the variable that reads the current ORF
+                        currentORF = []
+                        break
+                # Handles if the ORF is at the end of the strand
+                if(len(currentORF) > 0):
                     ORFS.append(''.join(currentORF))
                     currentORF = []
-                    break
-            if(len(currentORF) > 0):
-                ORFS.append(''.join(currentORF))
-        else:
-            continue
-
+            elif(slice < slice_position):
+                continue
+            
     return ORFS
 
 
@@ -77,6 +95,7 @@ def find_all_ORFs_both_strands(dna):
     ['ATGCGAATG', 'ATGCTACATTCGCAT']
     """
     # TODO: implement this
+    # get the ORFS for both dna and its reverse complement
     return get_ORFS(dna) + get_ORFS(reverse_complement(dna))
 
 def longest_ORF(dna):
@@ -85,21 +104,13 @@ def longest_ORF(dna):
     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
     'ATGCTACATTCGCAT'
     """
-    # TODO: implement this
-
-    ORF1 = get_ORFS(dna)
-    ORF2 = get_ORFS(reverse_complement(dna))
-
-    allORFs = ORF1 + ORF2
-
-    longest = ""
-    length = -999
-
-    for ORF in allORFs:
-        if(len(ORF) > length):
-            longest = ORF
-
-    return longest
+    # TODO: implement this 
+    try:
+        # find the longest ORF in both strands using max function
+        return max(find_all_ORFs_both_strands(dna), key=len)
+    except ValueError:
+        # max throws value error if there are no ORFs
+        return ""
 
 
 def longest_ORF_noncoding(dna, num_trials):
@@ -110,7 +121,17 @@ def longest_ORF_noncoding(dna, num_trials):
         num_trials: the number of random shuffles
         returns: the maximum length longest ORF """
     # TODO: implement this
-    pass
+    lengths = []
+
+    # shuffle DNA sequence
+    for x in range(num_trials):
+        new_dna = [i for i in dna]
+        random.shuffle(new_dna)
+        lengths.append(len(longest_ORF(new_dna)))
+
+    # return the maximum in the lengths
+    return max(lengths)
+
 
 def coding_strand_to_AA(dna):
     """ Computes the Protein encoded by a sequence of DNA.  This function
@@ -127,25 +148,9 @@ def coding_strand_to_AA(dna):
         'MPA'
     """
     # TODO: implement this
+    return ''.join([''.join([aa[x] for x in range(0, len(codons)) if (dna[slice:slice+3] in codons[x])]) for slice in range(0, len(dna), 3)])
 
-    codingStrand = ""
-
-    slice = 0
-    while(slice <= len(dna)-3):
-        codon = dna[slice:slice+3]
-
-        for x in range(0, len(codons)):
-            for y in range(0, len(codons[x])):
-                if(codon == codons[x][y]):
-                    codingStrand += aa[x]
-                    break
-
-        slice += 3
-
-    return codingStrand
-
-
-def gene_finder(dna, threshold):
+def gene_finder(dna):
     """ Returns the amino acid sequences coded by all genes that have an ORF
         larger than the specified threshold.
         
@@ -156,16 +161,17 @@ def gene_finder(dna, threshold):
                  length specified.
     """
     # TODO: implement this
-    
-    ORFS = find_all_ORFs_both_strands(dna)
-    good_aa = []
 
-    for ORF in ORFS:
-        if(len(ORF) >= threshold):
-            good_aa.append(coding_strand_to_AA(ORF))
+    # determine threshold
+    threshold = longest_ORF_noncoding(dna, 1500)
 
-    return good_aa
+    # call coding_strand_to_AA on each of the ORFs
+    return [coding_strand_to_AA(ORF) for ORF in (find_all_ORFs_both_strands(dna)) if (len(ORF) > threshold)]
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+    dna = load_seq("./data/X73525.fa")
+    
+    print gene_finder(dna)
