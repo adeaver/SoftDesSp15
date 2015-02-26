@@ -1,0 +1,194 @@
+BE -- Quantum Flux by Northlane
+FR -- Ball And Chain by XTC
+BG -- Russian Winter by Krokus
+DK -- Mine munni by Koer
+HR -- Zbog tebe za tebe by Ponor
+DE -- Echoes Of The Last Paradigm by Medus Lantern
+JP -- Stare at Yourself by Hibria
+HU -- Supernatural Superserious by REM
+BR -- Speechless by Lady Gaga
+BS -- The Village by Georges Delerue
+FI -- Selvsti pihtynyt by Jenni Vartiainen
+BY -- Monte Carlos Mountain by Nik Sand
+GR -- Never Had No One Ever by The Smiths
+RU -- Linverno Allegro by Antonio Vivaldi
+NL -- Dark Doo Wop by MS MR
+PT -- No Surprises by Radiohead
+RS -- opa hey by Kottarashky
+TR -- The Mundane and the Magic by Dark Tranquillity
+LT -- Heaven and Hell by CC Catch
+TN -- Inception by Eluveitie
+SK -- Whispers in the Dark by Mumford  Sons
+TL -- Wings of Feather And Wax by Killer Be Killed
+LV -- Beautiful PrimeMusicru by Alex Gaudino feat Mario
+RO -- Night of the Demon by Demon
+PL -- Hells Gate by Omen
+PM -- When Poets Dreamed Of Angels by David Sylvian
+CH -- Rock Superstar by Cypress Hill
+CO -- La maladie damour by Matrise des HautsdeSeine
+VE -- Is This Happiness by Lana Del Rey
+CL -- Living for Love by Madonna
+CA -- Everlong by Foo Fighters
+IR -- Pagan Poetry by Bjrk
+IT -- Runnin Wild by Airbourne
+VN -- Honest by Kodaline
+CZ -- Human Interest by Hooverphonic
+GE -- Smoke Club by Kamandi
+AR -- Animal by Neon Trees
+AU -- Uptown Funk by Mark Ronson
+AT -- Come Undone by Duran Duran
+IN -- Birthright by Adharma
+LK -- Taphead by Talk Talk
+IE -- Silent Picture Show by Unquiet Nights
+ID -- One More Time by Daft Punk
+ES -- Out of My Mind by Duran Duran
+ME -- Forever by HAIM
+NO -- My Remedy by Santa Cruz
+US -- I Love 64 by mindinabox
+UM -- at the end of it all by ADULT
+SI -- Ticks  Leeches by Tool
+KP -- Surrender by Billy Talent
+UK -- Fireside by Arctic Monkeys
+UA -- Desecration by Nikolo Kotzev
+MX -- Vernculo by Future Brown
+SE -- White Trash Circus by Mtley Cre
+
+BD -- 12
+BE -- 63
+BG -- 65
+BA -- 13
+BB -- 2
+BN -- 1
+BO -- 3
+JP -- 73
+JM -- 2
+JO -- 2
+BR -- 2769
+BS -- 4
+BY -- 78
+RU -- 519
+RS -- 54
+TL -- 1
+PA -- 1
+RO -- 46
+GT -- 4
+GS -- 1
+GR -- 31
+BH -- 1
+GE -- 5
+GL -- 1
+GI -- 2
+HR -- 116
+HU -- 35
+HK -- 5
+HN -- 2
+HM -- 1
+PR -- 4
+PS -- 1
+PW -- 1
+PT -- 80
+PY -- 10
+LV -- 24
+PE -- 20
+PK -- 1
+PH -- 10
+PL -- 884
+PM -- 4
+ZM -- 1
+EE -- 15
+EG -- 17
+ZA -- 15
+EC -- 6
+AL -- 2
+AO -- 3
+KZ -- 11
+ES -- 109
+ME -- 7
+MD -- 4
+MG -- 2
+UY -- 11
+UZ -- 2
+MO -- 1
+MN -- 2
+MH -- 1
+MK -- 12
+UM -- 2
+MT -- 1
+MV -- 1
+MP -- 1
+UK -- 618
+MY -- 5
+MX -- 173
+AT -- 40
+FR -- 126
+MA -- 2
+SH -- 3
+FI -- 237
+FO -- 1
+NI -- 1
+NL -- 187
+NO -- 46
+NZ -- 11
+NP -- 2
+NU -- 1
+CH -- 36
+CO -- 51
+CN -- 10
+CL -- 76
+CC -- 3
+CA -- 163
+CZ -- 73
+CY -- 1
+CX -- 3
+CR -- 8
+SY -- 3
+KG -- 1
+KE -- 1
+KI -- 1
+SV -- 2
+ST -- 2
+SK -- 44
+SJ -- 1
+SI -- 8
+KP -- 6
+SL -- 1
+SB -- 1
+SA -- 3
+SG -- 9
+SE -- 166
+DO -- 1
+DJ -- 1
+DK -- 17
+DE -- 454
+DZ -- 3
+US -- 1310
+LB -- 3
+LC -- 1
+TT -- 2
+TR -- 98
+LK -- 3
+LI -- 3
+TN -- 7
+LT -- 15
+LU -- 2
+TH -- 3
+TF -- 1
+VA -- 8
+VE -- 22
+IQ -- 1
+IS -- 6
+IR -- 20
+AM -- 2
+IT -- 170
+VN -- 16
+AN -- 1
+AQ -- 11
+AR -- 67
+AU -- 130
+IL -- 27
+IO -- 1
+IN -- 57
+AZ -- 2
+IE -- 37
+ID -- 69
+UA -- 165
